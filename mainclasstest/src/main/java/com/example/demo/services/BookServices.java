@@ -79,7 +79,11 @@ public class BookServices {
         Book bookfind = repo.findById(id);
         bookfind.setId(id);
         bookfind.setBookTitle(book.getBookTitle());
-        bookfind.setBookAuther(book.getBookAuther());
+
+        System.out.println(book.getAuthor());
+        bookfind.setAuthor(book.getAuthor());
+        
+        // bookfind.setBookAuther(book.getBookAuther());
         // bookList.forEach(x->{
         // if(x.getId() == id){
         //         x.setId(id);

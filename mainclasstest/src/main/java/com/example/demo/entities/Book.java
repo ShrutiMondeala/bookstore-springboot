@@ -1,48 +1,58 @@
 package com.example.demo.entities;
 
+import org.hibernate.annotations.Cascade;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "Book")
 public class Book {
 
-    @Override
-    public String toString() {
-        return "Book [id=" + id + ", bookTitle=" + bookTitle + ", bookAuther=" + bookAuther + "]";
-    }
-    public void setId(int id) {
-        this.id = id;
-    }
-    public void setBookTitle(String bookTitle) {
-        this.bookTitle = bookTitle;
-    }
-    public void setBookAuther(String bookAuther) {
-        this.bookAuther = bookAuther;
+    public Book() {
     }
 
     @Id
     private int id;
-    private String bookTitle;
     public int getId() {
         return id;
     }
+
     public String getBookTitle() {
         return bookTitle;
     }
-    public String getBookAuther() {
-        return bookAuther;
+
+    public Author getAuthor() {
+        return author;
     }
-    private String bookAuther;
-    public Book(int id, String bookTitle, String bookAuther) {
+
+    private String bookTitle;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    private Author author;
+
+    public void setId(int id) {
         this.id = id;
+    }
+
+    public void setBookTitle(String bookTitle) {
         this.bookTitle = bookTitle;
-        this.bookAuther = bookAuther;
     }
-    public Book() {
-        //TODO Auto-generated constructor stub
+
+    public void setAuthor(Author author) {
+        Author auth = new Author();
+       
+       auth.setAge(author.getAge());
+        auth.setName(author.getName());
+       auth.setPenName(author.getPenName());
+       auth.setId(author.getId());
+
+       this.author= auth;
     }
+   
     
     
 }
