@@ -2,6 +2,8 @@ package com.example.demo.entities;
 
 import org.hibernate.annotations.Cascade;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -32,6 +34,7 @@ public class Book {
     private String bookTitle;
 
     @OneToOne(cascade = CascadeType.ALL)
+    @JsonManagedReference
     private Author author;
 
     public void setId(int id) {

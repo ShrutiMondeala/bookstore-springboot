@@ -1,11 +1,14 @@
 package com.example.demo.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.annotation.Generated;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 
 @Entity
 public class Author {
@@ -19,6 +22,15 @@ public class Author {
     public void setId(int id) {
         this.id = id;
     }
+
+    @OneToOne(mappedBy = "author")
+    @JsonBackReference
+    private Book book ; 
+    
+    public Book getBook() {
+        return book;
+    }
+
     private String name;
     private int age;
     public void setName(String name) {
@@ -42,6 +54,9 @@ public class Author {
         this.penName = penName;
     }
     private String penName;
+    public void setBook(Book book) {
+        this.book = book;
+    }
 
 
 
